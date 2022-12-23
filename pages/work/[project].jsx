@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import Gallery from "../../components/gallery";
+import Gallery from "../../components/Gallery";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
