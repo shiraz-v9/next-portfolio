@@ -14,7 +14,7 @@ import {
   Fetch,
 } from "../components/functions";
 import LandingPics from "../components/landingPics";
-// import { saveData } from "./notion";
+import { saveData, getTime } from "./notion";
 
 const Homepage = () => {
   const [fontSize, setFontSize] = useState({});
@@ -44,8 +44,8 @@ const Homepage = () => {
 
   useEffect(function persistForm() {
     if (sessionStorage.getItem("accessed") == undefined) {
-      sessionStorage.setItem("accessed", `day - ${new Date().getDate()}`);
-      // saveData();
+      sessionStorage.setItem("accessed", `${getTime()}`);
+      saveData();
     }
   });
   return (

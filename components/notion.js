@@ -1,5 +1,5 @@
+import { format } from "date-fns";
 export async function getIP() {
-  require("dotenv").config();
   var axios = require("axios");
 
   try {
@@ -21,6 +21,7 @@ export async function getIP() {
   }
 }
 
+// silly, unused
 export function Meme() {
   try {
     var json = { fellForIt: true };
@@ -47,12 +48,12 @@ export function Meme() {
 }
 
 export function getTime() {
-  const moment = require("moment");
-  var currentTime = moment().format("MMMM Do YYYY, h:mm:ss a");
-  return currentTime;
+  let currentDate = new Date();
+  return format(currentDate, "d / MMM / yy, h:mm:ss a");
 }
 
 export async function saveData() {
+  console.log("im running");
   var axios = require("axios");
   var data = JSON.stringify({
     time: await getTime(),
@@ -69,7 +70,9 @@ export async function saveData() {
   };
 
   axios(config)
-    .then(function (response) {})
+    .then((response) => {
+      console.log(response);
+    })
     .catch(function (error) {
       console.log(error);
     });
