@@ -1,0 +1,44 @@
+.skeleton {
+  animation: skeleton 1s linear infinite alternate;
+}
+
+.skeletonTxt {
+  animation: skeletonTxt 1s linear infinite alternate-reverse;
+  align-content: center;
+  margin-bottom: 1px;
+  margin-top: 1px;
+}
+
+.appearance {
+  width: 300px;
+  height: 25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}
+
+svg {
+  fill: var(--font);
+}
+
+p.skeletonTxt {
+  font-size: 16px;
+}
+
+@keyframes skeleton {
+  0% {
+    background-color: rgb(226, 226, 226);
+  }
+  100% {
+    background-color: rgb(65, 65, 65);
+  }
+}
+
+@keyframes skeletonTxt {
+  0% {
+    color: rgb(226, 226, 226);
+  }
+  100% {
+    color: rgb(65, 65, 65);
+  }
+}

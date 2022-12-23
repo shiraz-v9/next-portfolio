@@ -1,0 +1,11 @@
+:root {
+  --borderColor: rgba(48, 49, 52, 0.3);
+}
+
+.coolBorders {
+  border-radius: 5px;
+  margin-bottom: 20px;
+  padding: 12px;
+  background-color: var(--borderColor);
+  /* box-shadow: 0px 0px 2px rgb(168, 168, 168); */
+}
