@@ -56,10 +56,20 @@ const Homepage = () => {
           className="d-flex flex-column align-items-center intro"
         >
           <div className="name mb-4" style={fontSize}>
-            <Fetch notionBlock="cdc47159b76744a19cdba0166ee0153d" loop={1} />
+            <Fetch
+              notionBlock="cdc47159b76744a19cdba0166ee0153d"
+              loop={1}
+              sessionName="name"
+              sessionSave={true}
+            />
           </div>
           <div className="fetch mb-4 mx-3">
-            <Fetch notionBlock="914037e1fa8d497c8b153c972eed593e" loop={3} />
+            <Fetch
+              notionBlock="914037e1fa8d497c8b153c972eed593e"
+              loop={3}
+              sessionName="intro"
+              sessionSave={true}
+            />
           </div>
           <div />
           {/* <LandingPics /> */}

@@ -6,15 +6,43 @@ interface props {
   loop?: number;
   RenderJSON?: boolean;
   linkFormatting?: boolean;
+  sessionSave?: boolean;
+  sessionName?: string;
 }
 export function Fetch({
   notionBlock,
   loop,
   RenderJSON,
   linkFormatting,
+  sessionSave,
+  sessionName,
 }: props) {
   const [notion, setNotion] = useState<null | []>(null);
   const [loading, setLoading] = useState(true);
+
+  const doNotFetch = () => {
+    if (sessionName !== undefined) {
+      return sessionStorage.getItem(sessionName) !== undefined ? true : false;
+    }
+  };
+
+  const saveToSS = (name: string, data: any) => {
+    if (sessionStorage.getItem(name) == undefined) {
+      sessionStorage.setItem(name, JSON.stringify(data));
+    }
+  };
+
+  const getParsedData = () => {
+    if (
+      sessionName !== undefined &&
+      sessionName !== null &&
+      sessionStorage.getItem(sessionName) !== undefined &&
+      sessionStorage.getItem(sessionName) !== null
+    ) {
+      return sessionStorage.getItem(sessionName);
+    }
+  };
+
   useEffect(() => {
     var axios = require("axios");
 
@@ -24,14 +52,23 @@ export function Fetch({
       headers: {},
     };
 
-    axios(config)
-      .then(function (response: any) {
-        setNotion(response.data);
-        setLoading(false);
-      })
-      .catch(function (error: any) {
-        setNotion(error);
-      });
+    doNotFetch() === true
+      ? (setNotion(JSON.parse(getParsedData())),
+        setLoading(false),
+        console.log("do not fetch running!", doNotFetch()))
+      : axios(config)
+          .then(function (response: any) {
+            setNotion(response.data);
+            console.log("axios runniong");
+
+            sessionSave && sessionName
+              ? saveToSS(sessionName, response.data)
+              : null;
+            setLoading(false);
+          })
+          .catch(function (error: any) {
+            setNotion(error);
+          });
   }, []);
 
   const notionRender = () => {
